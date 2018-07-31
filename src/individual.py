@@ -24,6 +24,30 @@ class       Individual():
             self.dna[i1], self.dna[i2] = self.dna[i2], self.dna[i1]
             print("Mutation !!")
 
+    def     get_mom_dna(self, mother, father_index, father_length):
+        """Mix current self DNA with mother DNA"""
+        print("mother dna : ", mother.dna)
+        for i in range(father_index):
+            j = i
+            print("i:{} ; self.dna[i]:{}".format(i, self.dna[i]))
+            print("j:{} ; mother.dna[j]:{}".format(j, mother.dna[j]))
+            while self.dna[i] and mother.dna[j].id == self.dna[i].id:
+                j += 1
+                if j >= mother.size:
+                    j = 0
+                print("j:{} ; mother.dna[j]:{}".format(j, mother.dna[j]))
+            self.dna[i] = mother.dna[j]
+        print("self dna : ", self.dna)
+        for i in range(father_index + father_length, mother.size):
+            j = i
+            print("i:{} ; self.dna[i]:{}".format(i, self.dna[i]))
+            print("j:{} ; mother.dna[j]:{}".format(j, mother.dna[j]))
+            while self.dna[i] and mother.dna[j].id == self.dna[i].id:
+                j += 1
+                if j >= mother.size:
+                    j = 0
+            self.dna[i] = mother.dna[j]
+
     def     breed(self, father, mother):
         """Breed two Individuals to make a new Individual"""
         if not isinstance(father, Individual) or\
@@ -33,8 +57,15 @@ class       Individual():
         if father.size != mother.size:
             print("Parents must have the same DNA length to breed")
             return
-        self.dna = father.dna[:father.size // 2]
-        self.dna += mother.dna[mother.size // 2:]
+        self.dna = [None]*father.size
+        index = random.randrange(father.size)
+        length = random.randrange(father.size - index + 1)
+        print("index: {} ; range: {} ; length = {}".format(index, father.size - index + 1, length))
+        self.dna[index : index + length] =\
+                father.dna[index : index + length]
+        print("av : ", self.dna)
+        self.get_mom_dna(mother, index, length)
+        print("ap : ", self.dna)
         self.mutation()
 
     def     set_fitness(self):

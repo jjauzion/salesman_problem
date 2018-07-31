@@ -46,5 +46,9 @@ class       City():
         self._id = City.count
         City.count += 1
 
+    def     __str__(self):
+        return "{} ".format(self.id)
+
     def     __repr__(self):
-        return "City {}: x = {} ; y = {}".format(self.name, self.x, self.y)
+        return "{} ".format(self.id)
+        #return "City {}: x = {} ; y = {}".format(self.id, self.x, self.y)

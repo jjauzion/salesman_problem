@@ -1,12 +1,19 @@
 from random import randrange
 
-def init(rx, ry=None):
-    x = rx
-    if not ry:
-        y = rx
-    else:
-        y = ry
-    return (x, y)
+class MyTest():
 
-x, y = init(10, 5)
-print("x = {} ; y = {}".format(x, y))
+    def __init__(self, name, id):
+        self.id = id
+        self.name = name
+    
+list = []
+list.append(MyTest("elm1", 1))
+list.append(MyTest("elm2", 2))
+list.append(MyTest("elm3", 3))
+
+elm = MyTest("elm1", 1)
+
+if elm in list:
+    print("oui")
+else:
+    print("non")

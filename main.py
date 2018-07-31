@@ -69,3 +69,4 @@ for i in range(param.nb_of_iteration):
     print("Population num {}: av fitness = {}".format(i + 1, average_fitness[i]))
     for individual in population:
         print(individual)
+    input("")
