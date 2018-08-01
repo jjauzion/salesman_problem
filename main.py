@@ -58,15 +58,17 @@ for i in range(param.nb_of_city):
     city2travel.append(City(5))
 population = []
 for i in range(param.population_size):
-    population.append(Individual(city_list=list(city2travel)))
+    population.append(Individual(city_list=city2travel))
 set_individual_breed_probability(population)
 average_fitness = [sum(i.fitness for i in population) / param.population_size]
 for i in range(param.nb_of_iteration):
+    print("Population num {}: av fitness = {}".format(i + 1, average_fitness[i]))
+    #for individual in population:
+    #    print(individual)
     population = next_generation(population, param.population_size)
     if (set_individual_breed_probability(population)):
         break
     average_fitness.append(sum(i.fitness for i in population) / param.population_size)
-    print("Population num {}: av fitness = {}".format(i + 1, average_fitness[i]))
-    for individual in population:
-        print(individual)
-    input("")
+print("FINAL: Population num {}: av fitness = {}".format(i + 1, average_fitness[i]))
+for individual in population:
+    print(individual)

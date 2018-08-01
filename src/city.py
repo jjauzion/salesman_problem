@@ -20,6 +20,24 @@ class       City():
     """
     count = 0
 
+    def     __init__(self, rangeX, rangeY=None, name=""):
+        """Constructor of City class, randomly init x and y value"""
+        self.randomXY(rangeX, rangeY)
+        self.name = name
+        self._id = City.count
+        City.count += 1
+
+    def     __repr__(self):
+        return "City {}: x = {} ; y = {}".format(self.id, self.x, self.y)
+
+    def     __eq__(self, city):
+        if not isinstance(city, City):
+            return False
+        elif self.id == city.id:
+            return True
+        else:
+            return False
+
     def     randomXY(self, rangeX, rangeY=None):
         """Set x and y attribute of self to random value"""
         self.x = random.randrange(rangeX);
@@ -38,17 +56,3 @@ class       City():
         self._id = id
 
     id = property(_get_id, _set_id)
-
-    def     __init__(self, rangeX, rangeY=None, name=""):
-        """Constructor of City class, randomly init x and y value"""
-        self.randomXY(rangeX, rangeY)
-        self.name = name
-        self._id = City.count
-        City.count += 1
-
-    def     __str__(self):
-        return "{} ".format(self.id)
-
-    def     __repr__(self):
-        return "{} ".format(self.id)
-        #return "City {}: x = {} ; y = {}".format(self.id, self.x, self.y)
