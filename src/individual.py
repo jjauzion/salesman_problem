@@ -51,6 +51,13 @@ class       Individual():
         self._str += str(self.dna)
         return self._str
 
+    def     __eq__(self, other):
+        """Compare 2 individuals. Comparisons is based on Individual Id"""
+        if not isinstance(other, Individual):
+            raise TypeError("Type {} can't be compared to Individual".format(\
+                    type(other)))
+        return self.id == other.id
+
     def     mix_parents_dna(self, father, mother):
         dna = [None]*father.size
         i_start = random.randrange(father.size - 1)
