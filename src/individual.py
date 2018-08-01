@@ -85,7 +85,10 @@ class       Individual():
         if father.size != mother.size:
             print("Parents must have the same DNA length to breed")
             return
-        dna = self.mix_parents_dna(father, mother)
+        if param.crossover_chances >= random.randrange(101):
+            dna = self.mix_parents_dna(father, mother)
+        else:
+            dna = Dna(father.dna)
         dna.mutation()
         return dna
 
@@ -94,6 +97,14 @@ class       Individual():
         self.fitness = 0
         for i in range(self.size - 1):
             self.fitness += get_distance(self.dna[i], self.dna[i + 1])
+
+    def     plot_route(self):
+        x = []
+        y = []
+        for city in self.dna:
+            x.append(city.x)
+            y.append(city.y)
+        return (x, y)
 
     def     reset_count():
         Individual.count = 0
