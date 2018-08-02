@@ -34,7 +34,7 @@ class       Optimisation():
         population = Population()
         population.random_population(self.city2travel, param.population_size)
         self.best_fitness = [population.best_performer.fitness]
-        gen = []
+        gen = [0]
         if show:
             if show == "best":
                 (x, y) = population.best_performer.get_plot_data()
@@ -43,26 +43,27 @@ class       Optimisation():
             else:
                 raise ValueError("Wrong option for show")
             plt.show()
+            plt.axis([0, max_iter, 0, self.best_fitness[0]])
             axes = plt.gca()
             line, = axes.plot(x, y, 'r-')
-        for i in range(max_iter):
+        for i in range(1, max_iter):
+            population = population.next_generation()
+            if Population.final:
+                break
+            self.best_fitness.append(population.best_performer.fitness)
             if show:
                 gen.append(i)
                 if show == "best":
                     (x, y) = population.best_performer.get_plot_data()
                 elif show == "convergence":
                     (x, y) = (gen, self.best_fitness)
-                    print("x: ", len(x))
-                    print("y: ", len(y))
+                    print("x: ", x[i])
+                    print("y: ", y[i])
                 line.set_xdata(x)
                 line.set_ydata(y)
                 plt.draw()
                 plt.pause(1e-17)
                 time.sleep(0.01)
-            self.best_fitness.append(population.best_performer.fitness)
-            population = population.next_generation()
-            if Population.final:
-                break
         if show:
             plt.show()
         return population
