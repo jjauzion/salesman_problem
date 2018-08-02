@@ -98,7 +98,7 @@ class       Individual():
         for i in range(self.size - 1):
             self.fitness += get_distance(self.dna[i], self.dna[i + 1])
 
-    def     plot_route(self):
+    def     get_plot_data(self):
         x = []
         y = []
         for city in self.dna:

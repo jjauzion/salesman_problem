@@ -10,7 +10,7 @@ class       Population():
     """Class population is a set of Individual"""
 
     count = 0
-    convergence = 0
+    final = 0
 
     def     __init__(self, city2travel=None, population_size=None):
         """Constructor of Population. Requires list of cities and pop size"""
@@ -86,11 +86,11 @@ class       Population():
         self.best_performer.adjusted_fitness = (self.best_performer.fitness -\
                 self.worse_performer.fitness) * -1
         if self.best_performer.adjusted_fitness == 0:
-            Population.convergence = 1
+            Population.final = 1
         for i in self.list:
             i.adjusted_fitness =\
                     (i.fitness - self.worse_performer.fitness) * -1
-            if Population.convergence:
+            if Population.final:
                 i.breed_proba = 100
             else:
                 i.breed_proba =\
