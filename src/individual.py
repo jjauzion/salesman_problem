@@ -21,7 +21,7 @@ class       Individual():
     def     __init__(self, city_list=None, father=None, mother=None):
         """Constructor of Individual class
         
-        An new Individual can be made either from 2 parents or from a city list
+        An new Individual can either be created from 2 parents or from a city list
 
         """
         if city_list:
