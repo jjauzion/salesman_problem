@@ -1,10 +1,9 @@
-## TSP algorithm
+## TSP solver
 This program approach the optimal solution to the Traveling Salesman Problem with a genetic algorithm
 
 ## Settings requirement
 
-python 3.7
-matplotlib (https://matplotlib.org/)
+python 3.7 and matplotlib (https://matplotlib.org/)
 
 Note: this program has only been tested on Mac OsX
 
